@@ -31,7 +31,6 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Builder
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
     <#if chainModel>
