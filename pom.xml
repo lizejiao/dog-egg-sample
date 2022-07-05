@@ -18,6 +18,7 @@
     <modules>
         <module>lgd-mybatis</module>
         <module>lgd-mybatis-plus</module>
+        <module>mybatis-plus-generator</module>
     </modules>
 
     <build>
