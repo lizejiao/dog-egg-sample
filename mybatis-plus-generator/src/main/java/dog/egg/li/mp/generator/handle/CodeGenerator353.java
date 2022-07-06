@@ -1,10 +1,10 @@
-package dog.egg.li.mp.generator;
+package dog.egg.li.mp.generator.handle;
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-import dog.egg.li.mp.generator.pojo.MysqlConnectInfo;
+import dog.egg.li.mp.generator.config.GeneratorConfig;
 import org.springframework.util.StringUtils;
 
 import java.util.Collections;
@@ -25,42 +25,47 @@ public class CodeGenerator353 {
     /**
      * 自动生成器处理逻辑
      */
-    public static void doGenerator(MysqlConnectInfo info) {
+    public static void doGenerator(GeneratorConfig config) {
         /* -----------   生成文件路径设置（下面不需要更改）  ------------ */
-        String classPath = StringUtils.hasText(info.getClassPath()) ? info.getClassPath() : System.getProperty("user.dir");
+        String classPath = StringUtils.hasText(config.getClassPath()) ? config.getClassPath() : System.getProperty("user.dir");
         // java 文件输出路径
-        String outputDir = classPath + "/" + info.getModule() + "/src/main/java";
+        String outputDir = classPath + "/" + config.getModule() + "/src/main/java";
         // mapper.xml 文件输出路径
-        String mapperOutputDir = classPath + "/" + info.getModule() + "/src/main/resources/mapper/";
+        String xmlOutputDir = classPath + "/" + config.getModule() + "/src/main/resources/mapper/";
 
-        FastAutoGenerator.create(info.getUrl(), info.getUsername(), info.getPassword())
+        FastAutoGenerator.create(config.getUrl(), config.getUsername(), config.getPassword())
                 .globalConfig(builder -> {
-                    builder.author(info.getAuthor()) // 设置作者
+                    builder.author(config.getAuthor()) // 设置作者
 //                            .enableSwagger() // 开启 swagger 模式
 //                            .fileOverride() // 全局覆盖已有文件的配置已失效，已迁移到策略配置中,3.5.4版本会删除此方法
                             .outputDir(outputDir) // 指定输出目录
                             .disableOpenDir(); // 禁止打开输出目录
                 })
                 .packageConfig(builder -> { //包配置(PackageConfig)
-                    builder.parent(info.getParentPackageName()) // 设置父包名
-                            .moduleName("") // 设置父包模块名
-                            .pathInfo(Collections.singletonMap(OutputFile.xml, mapperOutputDir)); // 设置mapperXml生成路径
+                    builder.parent(config.getParentPackageName()) // 设置父包名
+                            .moduleName("") // 设置父包模块名,默认值:无
+                            .entity(StringUtils.hasText(config.getEntityPkgName()) ? config.getEntityPkgName() : "entity")
+                            .service(StringUtils.hasText(config.getServicePkgName()) ? config.getServicePkgName() : "service")
+                            .serviceImpl(StringUtils.hasText(config.getServiceImplPkgName()) ? config.getServiceImplPkgName() : "service.impl")
+                            .mapper(StringUtils.hasText(config.getMapperPkgName()) ? config.getMapperPkgName() : "mapper")
+                            .controller(StringUtils.hasText(config.getControllerPkgName()) ? config.getControllerPkgName() : "controller")
+                            .pathInfo(Collections.singletonMap(OutputFile.xml, xmlOutputDir)); // 设置mapperXml生成路径
                 })
                 .templateConfig(builder -> {  // 模板配置(TemplateConfig)
-                    builder.xml(info.isXml() ? "/templates/lgd_mapper.xml" : "") // 自定义模板
-                            .controller(info.isController() ? "/templates/controller.java" : "")
-                            .service(info.isService() ? "/templates/service.java" : "")
-                            .serviceImpl(info.isService() ? "/templates/serviceImpl.java" : "")
-                            .mapper(info.isEntity() ? "/templates/mapper.java" : "")
+                    builder.xml(config.isXml() ? "/templates/lgd_mapper.xml" : "") // 自定义模板
+                            .controller(config.isController() ? "/templates/controller.java" : "")
+                            .service(config.isService() ? "/templates/service.java" : "")
+                            .serviceImpl(config.isService() ? "/templates/serviceImpl.java" : "")
+                            .mapper(config.isEntity() ? "/templates/mapper.java" : "")
                             .entity("/templates/lgd_entity.java")
                             .build();
                 })
                 .strategyConfig(builder -> { //策略配置(StrategyConfig)
-                    builder.addInclude(Optional.ofNullable(info.getTableName()).orElse(scanner("表名"))) // 设置需要生成的表名
+                    builder.addInclude(Optional.ofNullable(config.getTableName()).orElse(scanner("表名"))) // 设置需要生成的表名
                             .addTablePrefix("t_", "c_") // 设置过滤表前缀
                             // ------------->>> Entity 策略配置
                             .entityBuilder()
-                            .idType(info.getIdType())
+                            .idType(config.getIdType())
                             .enableLombok() // 开启 lombok 模型	默认值:false
                             .enableChainModel() // 开启链式模型
                             .enableFileOverride()

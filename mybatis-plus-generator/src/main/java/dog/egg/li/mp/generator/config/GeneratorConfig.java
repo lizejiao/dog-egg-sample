@@ -1,7 +1,10 @@
-package dog.egg.li.mp.generator.pojo;
+package dog.egg.li.mp.generator.config;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 
@@ -14,7 +17,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class MysqlConnectInfo {
+public class GeneratorConfig {
     private String url;
     private String username;
     private String password;
@@ -35,4 +38,16 @@ public class MysqlConnectInfo {
     private boolean service;
     private boolean entity;
     private boolean xml;
+
+    // Entity 包名：默认值:entity
+    private String entityPkgName;
+    // service 包名：默认值:service
+    private String servicePkgName;
+    // serviceImpl 包名：默认值:service.impl
+    private String serviceImplPkgName;
+    // mapper 包名：默认值:mapper，如果项目中为dao，可以配置为dao
+    private String mapperPkgName;
+    // controller 包名：默认值:controller
+    private String controllerPkgName;
+
 }

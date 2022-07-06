@@ -1,14 +1,14 @@
 package dog.egg.li.mp.generator;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import dog.egg.li.mp.generator.pojo.MysqlConnectInfo;
+import dog.egg.li.mp.generator.config.GeneratorConfig;
+import dog.egg.li.mp.generator.handle.CodeGenerator353;
 
 /**
  * 本地环境
  */
 public class LocalHost {
     public static void main(String[] args) {
-        CodeGenerator353.doGenerator(MysqlConnectInfo.builder()
+        CodeGenerator353.doGenerator(GeneratorConfig.builder()
                 // ↓↓↓↓↓↓-----> 数据库连接信息
                 .url("jdbc:mysql://127.0.0.1:3306/lgd_demo?useUnicode=true&useSSL=false&characterEncoding=utf8")
                 .username("root")
@@ -28,6 +28,7 @@ public class LocalHost {
                 .service(true)
                 .entity(true)
                 .xml(true)
+                .mapperPkgName("dao") // xxxMapper.java包路径设置
                 .build());
     }
 }
