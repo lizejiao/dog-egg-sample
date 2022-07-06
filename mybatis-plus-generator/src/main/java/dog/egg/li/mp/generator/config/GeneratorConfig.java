@@ -50,4 +50,7 @@ public class GeneratorConfig {
     // controller 包名：默认值:controller
     private String controllerPkgName;
 
+    // 格式化 mapper 文件名称：默认格式："%sDao"
+    private String formatMapperFileName;
+
 }

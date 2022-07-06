@@ -79,8 +79,9 @@ public class CodeGenerator353 {
                             .enableFileOverride()
                             // ------------->>> Mapper 策略配置
                             .mapperBuilder()
-                            .enableBaseResultMap() //启用 BaseResultMap 生成
-                            .enableBaseColumnList() //启用 BaseColumnList
+                            .enableBaseResultMap() // 启用 BaseResultMap 生成
+                            .enableBaseColumnList() // 启用 BaseColumnList
+                            .formatMapperFileName(StringUtils.hasText(config.getFormatMapperFileName()) ? config.getFormatMapperFileName() : "%sDao")
                             .enableFileOverride()
                     ;
                 })
