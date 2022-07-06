@@ -18,14 +18,14 @@ public class LocalHost {
                 // ↓↓↓↓↓↓-----> 项目路径(项目所在的全路径) 例如当前目录：System.getProperty("user.dir")
                 .classPath(System.getProperty("user.dir"))
                 // ↓↓↓↓↓↓-----> 项目下的模块
-                .module("mybatis-plus-generator")
+                .module("lgd-mybatis-plus")
                 // ↓↓↓↓↓↓-----> 设置包名:src.main.java包下开始写....
-                .parentPackageName("dog.egg.li.mp.generator")
+                .parentPackageName("dog.egg.li.mybatisplus")
                 // ↓↓↓↓↓↓-----> 主键策略，使用Mybatis-plus提供的雪花算法
-                .idType(IdType.ASSIGN_ID)
+//                .idType(IdType.ASSIGN_ID)
                 // ↓↓↓↓↓↓-----> 是否生成Controller、service/serviceImpl、mapper接口、mapper.xml文件
-                .controller(false)
-                .service(false)
+                .controller(true)
+                .service(true)
                 .entity(true)
                 .xml(true)
                 .build());
