@@ -25,6 +25,17 @@
             <optional>true</optional><!--表示该依赖是可选的.不会被依赖传递-->
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.36</version>
+        </dependency>
+
         <!--web-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
