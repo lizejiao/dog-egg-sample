@@ -3,8 +3,8 @@
 <mapper namespace="${package.Mapper}.${table.mapperName}">
 
     <!-- 李苟蛋的代码生成器特别提示: mybatisPlus支持单表查询的所有场景，尽量不要自己写sql，如果涉及到自己写sql的多表查询，
-    请在resources/mapper/ext 目录下创建自己的extDemoMapper.xml 文件, mapper接口也请自定义ext包创建mapper接口，避免
-    未来添加字段等重新自动生成覆盖掉你的文件 ！！！-->
+    请在resources/mapper/ext 目录下创建自己的【extDemoMapper.xml】文件,下面sql片段可在你自己的【extDemoMapper.xml】
+    中引用，mapper接口也请自定义ext包创建mapper接口，避免未来添加字段等重新自动生成覆盖掉你的文件 ！！！-->
 <#if enableCache>
     <!-- 开启二级缓存 -->
     <cache type="${cacheClassName}"/>
