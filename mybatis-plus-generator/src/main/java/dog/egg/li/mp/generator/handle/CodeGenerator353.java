@@ -47,7 +47,7 @@ public class CodeGenerator353 {
                             .entity(StringUtils.hasText(config.getEntityPkgName()) ? config.getEntityPkgName() : "entity")
                             .service(StringUtils.hasText(config.getServicePkgName()) ? config.getServicePkgName() : "service")
                             .serviceImpl(StringUtils.hasText(config.getServiceImplPkgName()) ? config.getServiceImplPkgName() : "service.impl")
-                            .mapper(StringUtils.hasText(config.getMapperPkgName()) ? config.getMapperPkgName() : "mapper")
+                            .mapper(StringUtils.hasText(config.getMapperPkgName()) ? config.getMapperPkgName() : "dao")
                             .controller(StringUtils.hasText(config.getControllerPkgName()) ? config.getControllerPkgName() : "controller")
                             .pathInfo(Collections.singletonMap(OutputFile.xml, xmlOutputDir)); // 设置mapperXml生成路径
                 })

@@ -28,7 +28,10 @@ public class LocalHost {
                 .service(true)
                 .entity(true)
                 .xml(true)
-                .mapperPkgName("dao") // xxxMapper.java包路径设置
+                // xxxDao.java包路径设置(默认为dao)，还可以设置entity，service，controller所在包路径
+                .mapperPkgName("dao")
+                // xxxMapper.java文件名称格式化为xxxDao.java，默认设置
+                .formatMapperFileName("%sDao")
                 .build());
     }
 }

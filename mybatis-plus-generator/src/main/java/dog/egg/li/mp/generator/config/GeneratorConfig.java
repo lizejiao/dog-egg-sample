@@ -45,7 +45,7 @@ public class GeneratorConfig {
     private String servicePkgName;
     // serviceImpl 包名：默认值:service.impl
     private String serviceImplPkgName;
-    // mapper 包名：默认值:mapper，如果项目中为dao，可以配置为dao
+    // mapper 包名：默认值:dao，如果项目中为mapper，可修改为mapper
     private String mapperPkgName;
     // controller 包名：默认值:controller
     private String controllerPkgName;
