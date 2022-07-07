@@ -1,0 +1,40 @@
+##引入mybatis支持
+$!{mybatisSupport.vm}
+
+##设置保存名称与保存位置
+$!callback.setFileName($tool.append($!{tableInfo.name}, "Mapper.xml"))
+$!callback.setSavePath($tool.append($modulePath, "/src/main/resources/mapper"))
+##$!callback.setSavePath($tool.append($modulePath,"/",$tableInfo.saveModelName, "/src/main/resources/mapper"))
+
+##拿到主键
+#if(!$tableInfo.pkColumn.isEmpty())
+    #set($pk = $tableInfo.pkColumn.get(0))
+#end
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="$!{tableInfo.savePackageName}.dao.$!{tableInfo.name}Dao">
+
+    <!-- 李苟蛋的代码生成器特别提示: mybatisPlus支持单表查询的所有场景，尽量不要自己写sql，如果涉及到自己写sql的多表查询，
+    请在resources/mapper/ext 目录下创建自己的【extDemoMapper.xml】文件,下面sql片段可在你自己的【extDemoMapper.xml】
+    中引用，mapper接口也请自定义ext包创建mapper接口，避免未来添加字段等重新自动生成覆盖掉你的文件 ！！！-->
+
+    <!-- 数据库表 -->
+    <sql id="Table_Name">$!tableInfo.obj.name</sql>
+
+    <!-- 所有字段 -->
+    <sql id="Base_Column_List">
+        #allSqlColumn()
+
+    </sql>
+
+    <resultMap id="BaseResultMap" type="$!{tableInfo.savePackageName}.entity.$!{tableInfo.name}">
+    <!--@Table $!{tableInfo.obj.name}-->
+#foreach($column in $tableInfo.fullColumn)
+    <result property="$!column.name" column="$!column.obj.name"/>
+##    <result property="$!column.name" column="$!column.obj.name" jdbcType="$!column.ext.jdbcType"/>
+#end
+    </resultMap>
+
+
+</mapper>

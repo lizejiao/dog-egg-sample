@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 /**
  * 代码生成器（新）
- * 注： 适用版本：mybatis-plus-generator 3.5.1 及其以上版本，对历史版本不兼容！
+ * 注： 适用版本：mybatis-plus-generator 3.5.3 及其以上版本，对历史版本不兼容！
  *
  * @作者 李苟蛋
  * @date 2022年02月07日 3:55 PM
